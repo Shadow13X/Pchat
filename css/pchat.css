@@ -1,0 +1,277 @@
+body{
+    background:#18191A;
+    width:100%;
+    color:white;
+}
+.box{
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+}
+.box .header{
+    width:100%;
+    border-bottom:1px solid #3A3B3C;
+    flex: 0 1 30px !important;
+    height:30px;
+    /* display:block !important; */
+}
+.action i{
+    color:white;
+}
+.col{
+    padding:0;
+    margin:0;
+}
+.action{
+    background: transparent;
+    border:none;
+}
+.actions{
+    margin-right:0;
+    width:29px;
+}
+.logo{
+    color:white;
+    padding: 0px 5px;
+}
+.logo img{
+    height: 20px;
+}
+.box .content{
+    flex: 1 1 auto !important;
+}
+.row{
+    margin: 0;
+}
+.left{
+    text-align:left;
+}
+.right{
+    text-align:right;
+}
+.pseudo{
+    color:#AAA;
+    font-size: 10px;
+    padding:10px 6px 0px;
+    margin-bottom: 5px;
+}
+.message{
+    border-radius:1em;
+    display:inline;
+    padding: 6px 16px;
+}
+#right{
+    background:linear-gradient(45deg,rgb(3, 136, 245),#6078EA);
+    color:white;
+}
+#left{
+    background:linear-gradient(45deg,rgb(126, 126, 126),rgb(196, 196, 196));
+    color:white;
+}
+#pc{
+    padding:10px 10px 0px 10px;
+    flex: 1 1 auto;
+    overflow:auto;
+    max-height: 479px;
+}
+#pc::-webkit-scrollbar {
+  display: none;
+}
+
+textarea{
+    border-radius:1.5em;
+    display:inline;
+    padding: 6px 16px;
+    width:35%;
+    height:10%;
+}
+.nm{
+    text-align:center;
+    width:100%;
+    margin:auto;
+}
+.submit{
+    background:linear-gradient(45deg,rgb(3, 136, 245),#6078EA);
+    border-radius:1.5em;
+    color:white;
+    border:none;
+    display:inline;
+    padding: 10px 30px;
+}
+.nm{
+    margin-top:30px
+}
+a{
+    text-decoration: none;
+}
+.submit{
+    float:left;
+}
+ul{
+    list-style:none;
+}
+.lf{
+    padding:0;
+}
+.error{
+    font-size:10px;
+    color:rgb(126, 0, 0);
+}
+.signin{
+    margin:auto;
+    text-align: center;
+    padding-top:50px;
+    width:50%
+}
+.signin input,input{
+    margin-top:15px;
+    padding:10px 15px;
+}
+.signin p{
+    font-size: 13px;
+}
+.signin a{
+    color:rgb(3, 136, 245);
+}
+.signin .submit{
+    width:30%
+}
+a[class=submit]{
+    float:left;
+}
+.nm input[name=submit]{
+    border-radius:1.5em;
+    display:inline-block;
+    padding: 6px 16px;
+    height:10%;
+}
+
+.submit{
+    margin-left:5px;
+    margin-right:5px;
+}
+.main{
+    border-left: 1px solid #3A3B3C;
+    padding:0;
+}
+.com-id{
+    margin:0;
+    border-bottom: 1px solid #3A3B3C;
+    flex: 0 1 8% !important;
+    display:flex;
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+}
+.own-id{
+    margin:0;
+    border-top: 1px solid #3A3B3C;
+    flex: 0 1 8% !important;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom:5px;
+}
+.friendlist{
+    flex: 1 1 auto !important;
+    overflow:auto;
+    max-height: 470px;
+}
+.friendlist::-webkit-scrollbar {
+    display: none;
+}
+  
+.com-id-data{
+    display:inline-flex;
+    flex-direction: column;
+    padding:0 10px;
+    margin:auto;
+    margin:0
+    /* width:100% */
+} 
+.own-id-data{
+    display:flex;
+    flex-direction: column;
+    padding:0 10px;
+    margin:auto;
+    width:100%
+}
+.chat-field{
+    flex: 0 1 auto !important;
+    padding:10px;
+    justify-content: space-between;
+}
+.msg-input{
+    background: #3A3B3C;
+    border-radius: 15px;
+    padding:5px 10px;
+    width:92%;
+    font-size:14px;
+    max-height:100px;
+    overflow-y:auto;
+    height:100%;
+}
+.msg-input[contenteditable]:empty::before {
+    content: "Message...";
+    color: gray;
+}
+.send{
+    color:white;
+    background:linear-gradient(45deg,rgb(3, 136, 245),#6078EA);
+    border-radius:15px;
+    border:none;
+    padding: 0 7px;
+    height: 100%;
+}
+.add{
+    color:white;
+    background:linear-gradient(45deg,rgb(3, 136, 245),#6078EA);
+    border-radius:15px;
+    border:none;
+    padding: 0 8px;
+    height: 30px;
+    text-align: center;
+}
+.com-id-seen, .own-id-seen{
+    font-size: 10px;
+}
+.com-id-head{
+}
+.friend-avatar{
+    color:white;
+    background:#3A3B3C;
+    border-radius:20px;
+    border:none;
+    padding: 0 7px;
+    height: 40px;
+    width:40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+.friend-avatar i{
+    font-size:16px !important;
+}
+.friend{
+    margin: 10px 0 0 0;
+}
+.connected{
+    width:13px;
+    height:13px;
+    background: rgb(1, 180, 31);
+    border-radius: 8px;
+    margin-left:-10px;
+}
+.disconnected{
+    width:13px;
+    height:13px;
+    background: transparent;
+    border-radius: 8px;
+    margin-left:-10px;
+}
+.notif{
+    background: rgb(194, 0, 0) !important;
+    color:white;
+    text-align:center;
+    font-size:9px;
+}

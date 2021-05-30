@@ -1,0 +1,26 @@
+{
+  "name": "Pchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Abdennour JEBBAR",
+  "license": "MIT",
+  "devDependencies": {
+    "crypto-js": "^4.0.0",
+    "electron": "^12.0.4",
+    "menu": "^0.2.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "jquery": "^3.6.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
+  }
+}

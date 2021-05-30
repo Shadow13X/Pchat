@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+        <title>PChat</title>
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <!-- Theme CSS -->
+        <link href="css/pchat.css" rel="stylesheet">
+        <link href="css/all.css" rel="stylesheet">
+        <!-- json -->
+        <!-- <script type="text/javascript" src="db.js"></script> -->
+        <!-- <script type="text/javascript" src="user.json"></script>-->
+        <!-- <script type="text/javascript" src="friends.json"></script> -->
+        <!-- <script type="text/javascript" src="convos.json"></script> -->
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+    <script src="js/peer.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/peer-client.js"></script>
+        <script>
+            const {ipcRenderer} = require('electron') 
+            function windowClose(win){
+                var a = win.localStorage.length === 0 ? {} : win.localStorage
+                console.log("that's local storage", window.localStorage)
+                ipcRenderer.send('logConvos', JSON.stringify(a))
+            }
+            ipcRenderer.on('closeWindows', function (event) {
+                window.localStorage.clear()
+                window.close()
+            })
+            function resetWindow(){
+                $(".chatHistory").html('<div class="right"><p class="pseudo">ME</p><p class="message" id="right">Hello Friend!</p></div><div class="left"><p class="pseudo">Him</p><p class="message" id="left">Let\'s Chat</p></div>')
+                $("#com-id-head").text("Friend")
+                $("#com-id-seen").text("Last Seen")
+            }
+            function add(el) {
+                if(el !== '' & el !== 'Friend'){
+                    console.log(el)
+                    ipcRenderer.send('addFriend1', el)
+                }
+            }
+            function block(el) {
+                if(el !== '' & el !== 'Friend'){
+                    console.log("I'm blocking", el)
+                    ipcRenderer.send('blockFriend1', el)
+                    resetWindow()
+                }
+            }
+            ipcRenderer.on("UserNotFound", function (event,arg) {
+                alert(arg + " not found")
+            })
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <div class='header'>
+                <div class="logo" style="width:30px;float:left"><img src="./img/iconwhite.png"/></div>
+                <div class="actions" style="float:right">
+                    <!-- <button class="action" id="min" ><i class="fas fa-minus"></i></button> -->
+                    <!-- <button class="action"><i class="far fa-square"></i></button> -->
+                    <button class="action" onclick="windowClose(window)" ><i onclick="windowClose(window)" class="fas fa-times"></i></button>
+                </div>
+                <div style="margin-left: 32px; margin-right: 32px; height:30px;-webkit-app-region: drag;"></div>
+            </div>
+            <div class="row content">
+                <div class="col-sm-4" style="padding-right:0;padding-left:0;display: flex;flex-direction: column;">
+                    <div class="form-group " style=' display:inline-block;margin:auto;margin-top:10px;justify-content:center'>
+                        <input class="form-control m-0" id="searchFriend" placeholder='Enter UserID' style="color:white;background: #3A3B3C;
+                        padding:10px 10px; width:220px; display:inline-block;" required>
+                        <button class="add" onclick="add($('#searchFriend').val());$('#searchFriend').val('')"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="friendlist" style="padding-right:10px;padding-left:10px">
+                        <div class="row friend">
+                            <span class="friend-avatar"><i class="fas fa-user"></i></span>
+                            <span class="connected"></span>
+                            <span class="com-id-head" style="margin:auto 0;padding:0 10px">I'm connected</span>
+                        </div>
+                        <hr style="height:1px; background:#3A3B3C; width:90%;margin:10px auto;">
+                        <div class="row friend">
+                            <span class="friend-avatar"><i class="fas fa-user"></i></span>
+                            <span class="disconnected"></span>
+                            <span class="com-id-head" style="margin:auto 0;padding:0 10px">I'm disconnected</span>
+                        </div>
+                        <hr style="height:1px; background:#3A3B3C; width:90%;margin:10px auto;">
+                    </div>
+                    <div class="row own-id">
+                        <div class="own-id-data">
+                            <div id="peer-id"  class="own-id-head">ID</div>
+                            <div class="own-id-seen">Last Seen</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 main chat-div" style="display: flex;flex-direction: column;">
+                    <div class="row com-id">
+                        <div class="com-id-data">
+                            <div class="com-id-head" id="com-id-head">Friend</div>
+                            <div class="com-id-seen" id="com-id-seen">Last Seen</div>
+                        </div>
+                        <div style='display:flex;'>
+                            <button class="add" style='margin:auto 10px; ' onclick="add($('#com-id-head').text())" id="add"><i class="fas fa-plus" ></i></button>
+                            <button class="add " style='margin:auto 0px;background:rgb(202, 0, 0)' onclick="block($('#com-id-head').text())"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div id="pc" class="chatHistory">
+                        <div class="right">
+                            <p class="pseudo">ME</p>
+                            <p class="message" id="right">Hello Friend!</p>
+                        </div>
+                        <div class="left">
+                            <p class="pseudo">Him</p>
+                            <p class="message" id="left">Let's Chat</p>
+                        </div>
+                    </div>
+                    <div class="row chat-field">
+                        <span class="msg-input" role="textbox" contenteditable></span>
+                        <button class="send"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </body>
+</html>
